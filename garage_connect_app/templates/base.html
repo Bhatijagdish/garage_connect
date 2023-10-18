@@ -1,0 +1,581 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garage Connect App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        .kenteken-input {
+            position: relative; /* Relative positioning for the container to place ::before content */
+            padding-left: 3.5rem;
+            text-align: center;
+            background-repeat: no-repeat;
+            background-position: .4rem 0,0 0;
+            background-image: url({% static "images/license-plate.svg"%}), linear-gradient(90deg, #243f9c 3rem, #ffc320 0, #ffc320);
+        }
+    </style>
+</head>
+<body>
+<main>
+    <section class="d-flex bg-light justify-content-center align-items-center h-auto">
+        <div style="width: 60%">
+            <div class="m-auto h-auto justify-content-center align-items-center my-5">
+                <div class="px-3 py-3 rounded-3">
+                    <div class="progress mb-5 align-items-center" id="myProgressBar" style="margin: 2%;width:100%;">
+                        <div class="progress-bar" role="progressbar"
+                             style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                             aria-valuemax="100">0%
+                        </div>
+                    </div>
+                    <form id="myForm">
+                        <div>
+                            <fieldset>
+                                <div class="form-group">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="text"
+                                                       class="form-control text-uppercase kenteken-input"
+                                                       tabindex="1"
+                                                       required
+                                                       autofocus id="kenteken" name="kenteken"
+                                                       placeholder=" ">
+                                                <label for="kenteken" class="text-uppercase"
+                                                       style="padding-left: 3.5rem;">Kenteken</label>
+                                            </div>
+                                            <span class="text-muted" style="font-size: 70%;">
+                                    Voer het kenteken van uw auto in.
+                                </span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" autofocus
+                                                       id="kmstand"
+                                                       required
+                                                       name="kmstand" placeholder=" ">
+                                                <label for="kmstand" class="text-uppercase">KM stand</label>
+                                            </div>
+                                            <span class="text-muted" style="font-size: 70%;">
+                                    Vul indicatief uw km-stand in. Op basis van deze gegevens kunnen wij het onderhoud aan uw auto beter beoordelen.
+                                </span>
+                                        </div>
+                                    </div>
+                                    <div class="mx-3 my-3 text-black-50 rounded-3"
+                                         style="background-color: #d3d3d3!important;">
+                                        <div class="mx-3 my-3">
+                                            <dl class="row">
+                                                <dt class="col-sm-4 text-left pr-5">Merk</dt>
+                                                <dd class="col-sm-6 text-dark"></dd>
+
+                                                <dt class="col-sm-4 text-left pr-5">Model</dt>
+                                                <dd class="col-sm-6 text-dark"></dd>
+
+                                                <dt class="col-sm-4 text-left pr-5">Bouwjaar</dt>
+                                                <dd class="col-sm-6 text-dark"></dd>
+
+                                                <dt class="col-sm-4 text-left pr-5">APK Vervaldatum</dt>
+                                                <dd class="col-sm-6 text-dark"></dd>
+                                            </dl>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="form-group">
+                                    <div class="mx-3 my-3">
+                                        Vul uw woon- of werkadres in. Op basis van uw postcode wordt een
+                                        service center
+                                        bij
+                                        u in de
+                                        buurt gezocht.
+                                    </div>
+                                    <div class="row g-3">
+                                        <div class="col-md-8">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" autofocus
+                                                       id="postcode"
+                                                       required
+                                                       name="postcode"
+                                                       placeholder=" ">
+                                                <label for="postcode"
+                                                       class="text-uppercase">Postcode</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" autofocus
+                                                       id="huisnummer"
+                                                       required
+                                                       name="huisnummer" placeholder=" ">
+                                                <label for="huisnummer"
+                                                       class="text-uppercase">Huisnummer</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" autofocus
+                                                       id="straatnaam"
+                                                       required
+                                                       name="straatnaam" placeholder=" ">
+                                                <label for="straatnaam"
+                                                       class="text-uppercase">Straatnaam</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" autofocus
+                                                       id="woonplaats"
+                                                       required
+                                                       name="woonplaats" placeholder=" ">
+                                                <label for="woonplaats"
+                                                       class="text-uppercase">Woonplaats</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <div>
+                                        <div class="form-floating mb-3">
+                                            <input type="email" class="form-control" autofocus
+                                                   id="emailaddress"
+                                                   required
+                                                   name="emailaddress"
+                                                   placeholder=" ">
+                                            <label for="emailaddress">E-mailadres</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden">
+                                <input type="hidden">
+                                <input type="hidden">
+                                {{ form.as_p }}
+                                <button type="submit" class="btn text-uppercase"
+                                        style="background-color: #ffc320;">
+                                    Volgende
+                                </button>
+                            </fieldset>
+                        </div>
+                    </form>
+                    <form id="secondForm" method="post" style="display: none;" action="{% url 'save_form_data' %}">
+                        {% csrf_token %}
+                        <div class="row content">
+                            <div class="col-sm-9 my-2 bg-light rounded" style="background-color: #d3d3d3!important;">
+                                <fieldset>
+                                    <div class="px-3">
+                                        <div class="form-group">
+                                            <div class="p-2">
+                                                <label>
+                                                    Selecteer gewenst onderhoud
+                                                </label>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="onderhoud"
+                                                           required
+                                                           value="Geen onderhoud nodig"
+                                                           id="onderhoud1">
+                                                    <label class="form-check-label" for="onderhoud1">
+                                                        Geen onderhoud nodig
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="onderhoud"
+                                                           value="Kleine onderhoudsbeurt (vaste service interval) + APK
+                                                        uitvoeren"
+                                                           id="onderhoud2">
+                                                    <label class="form-check-label" for="onderhoud2">
+                                                        Kleine onderhoudsbeurt (vaste service interval) + APK
+                                                        uitvoeren
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="onderhoud"
+                                                           value="Grote onderhoudsbeurt (vaste service interval) + APK
+                                                        uitvoeren"
+                                                           id="onderhoud3">
+                                                    <label class="form-check-label" for="onderhoud3">
+                                                        Grote onderhoudsbeurt (vaste service interval) + APK
+                                                        uitvoeren
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="onderhoud"
+                                                           value="Tussenbeurt"
+                                                           id="onderhoud4">
+                                                    <label class="form-check-label" for="onderhoud4">
+                                                        Tussenbeurt
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="onderhoud"
+                                                           value="Kleine onderhoudsbeurt uitvoeren, vaste service interval"
+                                                           id="onderhoud5">
+                                                    <label class="form-check-label" for="onderhoud5">
+                                                        Kleine onderhoudsbeurt uitvoeren, vaste service interval
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="onderhoud"
+                                                           value="Grote onderhoudsbeurt uitvoeren, vaste service interval"
+                                                           id="onderhoud6">
+                                                    <label class="form-check-label" for="onderhoud6">
+                                                        Grote onderhoudsbeurt uitvoeren, vaste service interval
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="onderhoud"
+                                                           value="Alleen APK keuring"
+                                                           id="onderhoud7">
+                                                    <label class="form-check-label" for="onderhoud7">
+                                                        Alleen APK keuring
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="onderhoud"
+                                                           value="Terugroepactie"
+                                                           id="onderhoud8">
+                                                    <label class="form-check-label" for="onderhoud8">
+                                                        Terugroepactie
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="p-2">
+                                                <div class="d-inline">
+                                                    <label>
+                                                        Extra werkzaamheden
+                                                    </label>
+                                                </div>
+                                                <div class=" d-inline text-secondary">(Optional)</div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox"
+                                                           name="werkzaamheden"
+                                                           value="APK Keuring"
+                                                           id="checkbox1">
+                                                    <label class="form-check-label" for="checkbox1">
+                                                        APK Keuring
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox"
+                                                           name="werkzaamheden"
+                                                           value="Reparatie uitvoeren (*specificeer hieronder)"
+                                                           id="checkbox2">
+                                                    <label class="form-check-label" for="checkbox2">
+                                                        Reparatie uitvoeren (<sup>*</sup>specificeer hieronder)
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox"
+                                                           name="werkzaamheden"
+                                                           value="Terugroepactie (*specificeer hieronder)"
+                                                           id="checkbox3">
+                                                    <label class="form-check-label" for="checkbox3">
+                                                        Terugroepactie (<sup>*</sup>specificeer hieronder)
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox"
+                                                           name="werkzaamheden"
+                                                           value="Winterbanden/zomberbanden wisselen"
+                                                           id="checkbox4">
+                                                    <label class="form-check-label" for="checkbox4">
+                                                        Winterbanden / zomberbanden wisselen
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="p-2">
+                                                <div>
+                                                    <label for="datum">Selecteer gewenste
+                                                        datum</label>
+                                                </div>
+                                                <input type="date" required id="datum"
+                                                       name="datum">
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="p-3">
+                                                <div class="form-floating">
+                                                    <textarea class="form-control" autofocus
+                                                              id="opmerkingen"
+                                                              name="opmerkingen"
+                                                              placeholder=" "
+                                                              style="height: 100px"></textarea>
+                                                    <label for="opmerkingen">Opmerkingen</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="d-flex py-2 justify-content-between">
+                                        <a class="btn" href="/">
+                                            vorige
+                                        </a>
+                                        {{ form.as_p }}
+                                        <button type="submit" class="btn text-uppercase"
+                                                style="background-color: #ffc320;">
+                                            Volgende
+                                        </button>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <div class="col-sm-3 my-2">
+                                <div class="p-2 bg-light rounded ms-auto border border-secondary">
+                                    <div class="md-3 pd-3">
+                                        <div>
+                                            <strong>
+                                                Mijn adres
+                                            </strong>
+                                        </div>
+                                        <p class="text-muted" style="font-size: 80%;">
+                                        </p>
+                                    </div>
+                                    <div class="md-3 pd-3">
+                                        <div>
+                                            <strong>
+                                                Mijn voertuig
+                                            </strong>
+                                        </div>
+                                        <p class="text-muted" style="font-size: 80%;">
+                                        </p>
+                                    </div>
+                                    <div class="md-3 pd-3">
+                                        <div>
+                                            <strong>
+                                                APK vervaldatum
+                                            </strong>
+                                        </div>
+                                        <p class="text-muted" style="font-size: 80%;">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div style="display: none;" id="final_submission">
+                        <div class="vh-100 d-flex justify-content-center align-items-center">
+                            <div class="col-md-4">
+                                <div class="border border-3 border-success"></div>
+                                <div class="card  bg-white shadow p-5">
+                                    <div class="mb-4 text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75"
+                                             fill="#198754" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                            <path
+                                                    d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="text-center">
+                                        <h1>Thank You!</h1>
+                                        <div class="p-3 m-3">
+                                            <a class="btn btn-outline-success" href="/">Back Home</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+<script>
+    const HOST_URL = "/api/get_licence/";
+
+    $(document).ready(function () {
+        $("#kenteken").on("input", function () {
+            let value = $(this).val();
+
+            // Formatting code
+            if (!value.includes('-') && value.length === 6) {
+                value = value.slice(0, 2) + '-' + value.slice(2, 5) + '-' + value.slice(5, 6);
+                $(this).val(value);
+            }
+
+            // GET request code
+            if (value.length === 8) { // Updated condition since the formatted string will now have a length of 8
+                $.ajax({
+                    url: HOST_URL + '?v=' + value,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $("dt:contains('Merk') + dd").text(data.merk || 'N/A');
+                        $("dt:contains('Model') + dd").text(data.model || 'N/A');
+                        $("dt:contains('Bouwjaar') + dd").text(data.bouwjaar || 'N/A');
+                        $("dt:contains('APK Vervaldatum') + dd").text(data.apk_vervaldatum || 'N/A');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Status:", status);
+                        console.error("Error:", error);
+                        console.error("Response:", xhr.responseText);
+                    }
+                });
+            }
+        });
+    });
+</script>
+<script>
+    const ADDRESS_URL = "/api/get_address/";
+
+    $(document).ready(function () {
+        let debounceTimer;
+
+        function fetchAddress() {
+            let postcode = $("#postcode").val();
+            let huisnummer = $("#huisnummer").val();
+
+            if ((postcode.length === 6) && (huisnummer.length > 2)) {
+                $.ajax({
+                    url: ADDRESS_URL + `?postcode=${postcode}&house_number=${huisnummer}`,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $("#straatnaam").val(data.street || 'N/A');
+                        $("#woonplaats").val(data.city || 'N/A');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Status:", status);
+                        console.error("Error:", error);
+                        console.error("Response:", xhr.responseText);
+                    }
+                });
+            }
+        }
+
+        $("#postcode, #huisnummer").on("input", function () {
+            clearTimeout(debounceTimer);  // Cancel the previous timer
+            debounceTimer = setTimeout(fetchAddress, 1000); // Set a new timer to call fetchAddress after 500ms
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const firstForm = document.getElementById('myForm');
+        const secondForm = document.getElementById('secondForm');
+        const finalSubmission = document.getElementById('final_submission');
+
+        firstForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Save form data in a variable
+            window.formData = new FormData(this);
+
+            // Hide first form and show second form
+            firstForm.style.display = "none";
+            secondForm.style.display = "block";
+
+            animateProgress();
+
+            let firstParagraph = $('.bg-light .border-secondary p').eq(0);
+            let secondParagraph = $('.bg-light .border-secondary p').eq(1);
+            let thirdParagraph = $('.bg-light .border-secondary p').eq(2);
+
+            firstParagraph.html(`${$('#straatnaam').val()} ${$('#huisnummer').val()} <br> ${$('#postcode').val()} ${$('#woonplaats').val()}`);
+            secondParagraph.html(`${$('#kenteken').val()} <br> ${$("dt:contains('Merk') + dd").text()} ${$("dt:contains('Model') + dd").text()}`);
+            thirdParagraph.html(`${$("dt:contains('APK Vervaldatum') + dd").text()}`);
+
+        });
+
+        secondForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const secondFormData = new FormData(this);
+
+            // Combine data from both forms
+            for (let [key, value] of secondFormData.entries()) {
+                if (window.formData.has(key)) {
+                    let currentValue = window.formData.get(key);
+                    if (!Array.isArray(currentValue)) {
+                        currentValue = [currentValue];
+                    }
+                    currentValue.push(value);
+                    window.formData.set(key, currentValue);
+                } else {
+                    window.formData.append(key, value);
+                }
+            }
+
+
+
+            let werkzaamhedenString = window.formData.get('werkzaamheden');
+            let werkzaamhedenArray = werkzaamhedenString.split(",");
+            window.formData.append('werkzaamheden', JSON.stringify(werkzaamhedenArray));
+
+
+
+            animateProgress();
+
+            fetch("{% url 'save_form_data' %}", {  // Use Django's template tags to get the URL
+                method: 'POST',
+                body: window.formData,
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'  // Set the CSRF token
+                },
+            })
+            .then(response => response.json())  // Assuming server responds with json
+            .then(data => {
+                // console.log(data);
+                // Handle the response here. E.g. show a success message to user
+                secondForm.style.display = "none";
+                finalSubmission.style.display = "block";
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                // Handle the error. E.g. show an error message to user
+            });
+        });
+
+         function animateProgress() {
+            let progressBar = $('#myProgressBar .progress-bar');
+            let currentProgressValue = parseInt(progressBar.attr('aria-valuenow'));
+
+            if (currentProgressValue == 0) {
+                setProgress(50);
+            } else if (currentProgressValue == 50) {
+                setProgress(100);
+            }
+        }
+
+        // You can adjust the increment value as per your need
+        function setProgress(value) {
+            let progressBar = $('#myProgressBar .progress-bar');
+            progressBar.css('width', value + '%').attr('aria-valuenow', value).text(value + '%');
+        }
+
+    });
+</script>
+</body>
+</html>
